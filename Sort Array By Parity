@@ -1,0 +1,25 @@
+class Solution {
+    public int[] sortArrayByParity(int[] nums) {
+        
+        int maxValid = 0;
+        int n = nums.length;
+        
+        for(int i=0; i<n; i++){
+            if(nums[i]%2 ==0){
+                swap(nums,i,maxValid);
+                maxValid++;
+            }
+        }
+        return nums;
+    }
+
+        
+        
+        void swap(int[] nums,int i,int j){
+            
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
+        }
+    
+}
