@@ -1,0 +1,84 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+      ListNode fl = l1;
+      ListNode sl = l2;
+      ListNode f = fl;
+      ListNode s = sl;
+      int lonesize = 0;
+      int stwosize = 0;
+      
+      
+      ListNode ptr = new ListNode(0);
+      ListNode dummy = ptr;
+      
+      while(f != null){
+        lonesize++;
+        f = f.next;
+      }
+      while(s != null){
+        stwosize++;
+        s = s.next;
+      }
+      int c = 0;
+      if(stwosize > lonesize){
+        while(fl != null){
+          int sum = sl.val + fl.val+c;
+          int rem = sum % 10;
+          c = sum /10;
+          sl.val = rem ;
+          sl = sl.next;
+          fl = fl.next;
+        }
+        while(sl != null){
+          int sum = sl.val + 0 + c;
+          int rem = sum % 10;
+          c = sum /10;
+          sl.val = rem;
+          sl = sl.next;
+        }
+        
+        dummy = l2;
+      }else{
+          while(sl != null){
+            int sum = sl.val + fl.val+c;
+            int rem = sum % 10;
+            c = sum /10;
+            fl.val = rem ;
+            sl = sl.next;
+            fl = fl.next;
+          }
+          while(fl != null){
+            int sum = fl.val + 0 + c;
+            int rem = sum % 10;
+            c = sum /10;
+            fl.val = rem;
+            fl = fl.next;
+          }
+
+          dummy = l1;
+      }
+      
+      ListNode n = dummy;
+      if(c>=1){
+        while(n.next != null){
+          n = n.next;
+        }
+        n.next = new ListNode(c);
+      }
+      
+      
+      return dummy;
+    }
+}
+
+
