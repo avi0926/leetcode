@@ -1,0 +1,23 @@
+class Solution {  
+  public ListNode getNode(int num, ListNode head){
+        ListNode curr = head;
+        while(num-1 != 0){
+          curr = curr.next;
+          num--;
+        }
+        return curr;
+      }  
+  
+    public ListNode reverseBetween(ListNode head, int left, int right) {      
+      while(left < right){
+        ListNode lnode = getNode(left,head);
+        ListNode rnode = getNode(right, head);        
+        int data = lnode.val;
+        lnode.val = rnode.val;
+        rnode.val = data;        
+        left++;
+        right--;
+      }
+      return head;
+    }
+}
