@@ -1,0 +1,34 @@
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+      int arr[] = new int[2];
+      int fidx = firstIndex(nums, target,0);
+      int lidx = lastIndex(nums, target,0);
+      arr[0] = fidx;
+      arr[1] = lidx;
+      
+      return arr;
+    }
+  public static int firstIndex(int[] nums, int target,int idx){
+    if(idx == nums.length){
+      return -1;
+    }
+    
+    int fidx = firstIndex(nums,target,idx+1);
+    if(nums[idx] == target){
+      return idx;
+    }else return fidx;
+  }
+  public static int lastIndex(int[] nums, int target,int idx){
+    if(idx == nums.length){
+      return -1;
+    }
+    
+    int lidx = lastIndex(nums,target,idx+1);
+    if(lidx == -1){
+      if(nums[idx] == target)
+        return idx;
+      else return -1;
+    }
+    return lidx;
+  }
+}
